@@ -22,7 +22,7 @@ device.Start()
 
 for {
 	select {
-	case sample := <-dev.C:
+	case sample := <-device.C:
 		// Each read is a H.264 NAL unit
 		fmt.Printf("Read %d byte sample\n", len(sample.Data))
 		sample.Release()
