@@ -29,6 +29,7 @@ const (
 // Controls (from linux/v4l2-controls.h)
 const (
 	// Control classes
+	V4L2_CTRL_CLASS_USER = 0x00980000
 	V4L2_CTRL_CLASS_MPEG = 0x00990000
 
 	// User-class control IDs
