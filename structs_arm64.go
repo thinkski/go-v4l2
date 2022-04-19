@@ -1,12 +1,12 @@
 // +build linux
-// +build !arm64
+// +build arm64
 
 package v4l2
 
 import "unsafe"
 
 const (
-	maxSizeBufferDotM         = 4
+	maxSizeBufferDotM         = 8
 	maxSizeExtControlDotValue = 8
 	maxSizeFormatDotFmt       = 200
 	sizePixFormat             = 48
@@ -38,7 +38,7 @@ type v4l2_pix_format struct {
 }
 
 type v4l2_format struct {
-	typ uint32
+	typ uint64
 	fmt [maxSizeFormatDotFmt]byte // union
 }
 
@@ -48,10 +48,12 @@ type v4l2_control struct {
 }
 
 type v4l2_requestbuffers struct {
-	count    uint32
-	typ      uint32
-	memory   uint32
-	reserved [2]uint32
+	count        uint32
+	typ          uint32
+	memory       uint32
+	capabilities uint32
+	flags        uint8
+	reserved     [3]uint8
 }
 
 type v4l2_timecode struct {
@@ -65,8 +67,8 @@ type v4l2_timecode struct {
 }
 
 type timeval struct {
-	tv_sec  uint32
-	tv_usec uint32
+	tv_sec  uint64
+	tv_usec uint64
 }
 
 type v4l2_buffer struct {
