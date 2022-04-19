@@ -1,4 +1,5 @@
 //go:build linux
+// +build linux
 
 package v4l2
 
