@@ -1,28 +1,26 @@
-//go:build linux && arm64
+//go:build linux && !arm64
 
 package v4l2
 
 import "unsafe"
 
-const maxSizeBufferDotM = 8
+const maxSizeBufferDotM = 4
 
 type v4l2_format struct {
-	typ uint64
+	typ uint32
 	fmt [maxSizeFormatDotFmt]byte // union
 }
 
 type v4l2_requestbuffers struct {
-	count        uint32
-	typ          uint32
-	memory       uint32
-	capabilities uint32
-	flags        uint8
-	reserved     [3]uint8
+	count    uint32
+	typ      uint32
+	memory   uint32
+	reserved [2]uint32
 }
 
 type timeval struct {
-	tv_sec  uint64
-	tv_usec uint64
+	tv_sec  uint32
+	tv_usec uint32
 }
 
 type v4l2_buffer struct {

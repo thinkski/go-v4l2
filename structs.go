@@ -1,12 +1,10 @@
-// +build linux
-// +build !arm64
+//go:build linux
 
 package v4l2
 
 import "unsafe"
 
 const (
-	maxSizeBufferDotM         = 4
 	maxSizeExtControlDotValue = 8
 	maxSizeFormatDotFmt       = 200
 	sizePixFormat             = 48
@@ -37,21 +35,9 @@ type v4l2_pix_format struct {
 	xfer_func    uint32
 }
 
-type v4l2_format struct {
-	typ uint32
-	fmt [maxSizeFormatDotFmt]byte // union
-}
-
 type v4l2_control struct {
 	id    uint32
 	value int32
-}
-
-type v4l2_requestbuffers struct {
-	count    uint32
-	typ      uint32
-	memory   uint32
-	reserved [2]uint32
 }
 
 type v4l2_timecode struct {
@@ -62,27 +48,6 @@ type v4l2_timecode struct {
 	minutes  uint8
 	hours    uint8
 	userbits [4]uint8
-}
-
-type timeval struct {
-	tv_sec  uint32
-	tv_usec uint32
-}
-
-type v4l2_buffer struct {
-	index     uint32
-	typ       uint32
-	bytesused uint32
-	flags     uint32
-	field     uint32
-	timestamp timeval
-	timecode  v4l2_timecode
-	sequence  uint32
-	memory    uint32
-	m         [maxSizeBufferDotM]byte // union
-	length    uint32
-	reserved2 uint32
-	reserved  uint32
 }
 
 type v4l2_ext_control struct {
