@@ -3,8 +3,6 @@
 
 package v4l2
 
-import "unsafe"
-
 const maxSizeBufferDotM = 4
 
 type v4l2_format struct {
